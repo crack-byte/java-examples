@@ -1,0 +1,35 @@
+service: sls-aws-spring-cloud-function # NOTE: update this with your service name
+provider: # Required - provider-specific configuration
+  name: aws # Required
+  region: ap-south-1 # Optional - default is us-east-1
+  runtime: java17 # Optional - default is java8
+  timeout: 10 # Optional - function timeout in seconds (default: 6)
+package:
+  artifact: target/aws-lambda-demo.jar # Path to the jar file to be deployed
+functions:  # Required - define your functions here
+  handleBootStream: # Required - define the name of your function
+    name: handleBootStream # Optional - defaults to the name above
+    handler: com.crackbyte.StreamLambdaHandler::handleRequest   # Required - the name of the handler
+    events: # The `events` block defines how to trigger the StreamLambdaHandler
+      - http: # defines an API Gateway HTTP endpoint
+          cors:
+            origin: '*' # Required for CORS support to work
+            headers: # Required for cookies, authorization headers with HTTPS
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - X-Forwarded-For
+              - X-Forwarded-Port
+              - X-Forwarded-Proto
+              - X-Forwarded-Proto-Version
+              - X-Forwarded-Proto-Host
+              - X-Forwarded-Proto-Port
+              - X-Forwarded-Proto-Path
+              - X-Forwarded-Proto-Query
+              - X-Forwarded-Proto-Fragment
+          path: /demo/{proxy+} # Path Parameter - proxy
+          method: any  # GET, POST, PUT, DELETE, ANY
+    timeout: 30 # Optional - function timeout in seconds (default: 6)

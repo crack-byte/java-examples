@@ -6,7 +6,37 @@ Globals:
     EndpointConfiguration: REGIONAL
 
 Resources:
-  AwsLambdaDemoFunction:
+#  AwsHelloLambdaFunction:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Handler: com.crackbyte.LambdaHandler::handleRequest
+#      Runtime: java17
+#      CodeUri: .
+#      MemorySize: 512
+#      Policies: AWSLambdaBasicExecutionRole
+#      Timeout: 30
+#      Events:
+#        ProxyResource:
+#          Type: Api
+#          Properties:
+#            Path: /hello/{proxy+}
+#            Method: any
+#  AwsDemoLambdaHandlerFunction:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Handler: com.crackbyte.DemoLambdaHandler::handleRequest
+#      Runtime: java17
+#      CodeUri: .
+#      MemorySize: 512
+#      Policies: AWSLambdaBasicExecutionRole
+#      Timeout: 30
+#      Events:
+#        ProxyResource:
+#          Type: Api
+#          Properties:
+#            Path: /demo/{proxy+}
+#            Method: any
+  AwsStreamLambdaHandlerFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: com.crackbyte.StreamLambdaHandler::handleRequest
@@ -25,11 +55,11 @@ Resources:
 Outputs:
   AwsLambdaDemoPingApi:
     Description: URL for application
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/test'
     Export:
       Name: AwsLambdaDemoPingApi
   AwsLambdaDemoHelloApi:
     Description: URL for application
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/demo/test'
     Export:
       Name: AwsLambdaDemoHelloApi
