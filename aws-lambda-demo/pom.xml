@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.11</version>
+        <version>3.1.2</version>
     </parent>
 
     <properties>
@@ -23,13 +23,13 @@
         <junit.version>5.9.3</junit.version>
         <snakeyaml.version>2.2</snakeyaml.version>
         <httpclient5.version>5.2.1</httpclient5.version>
-        <aws-serverless-java-container-core.version>1.9.3</aws-serverless-java-container-core.version>
+        <aws-serverless-java-container-core.version>2.0.0-M2</aws-serverless-java-container-core.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.amazonaws.serverless</groupId>
-            <artifactId>aws-serverless-java-container-springboot2</artifactId>
+            <artifactId>aws-serverless-java-container-springboot3</artifactId>
             <version>${aws-serverless-java-container-core.version}</version>
             <exclusions>
                 <exclusion>
@@ -65,11 +65,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--            <version>2.7.11</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>3.1.2</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
